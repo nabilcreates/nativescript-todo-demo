@@ -4,10 +4,7 @@
 
         <StackLayout>
             <!-- GRIDLAYOUT FOR INPUT AND BUTTON -->
-            <GridLayout columns='*,4*,2*' rows='*' height='50'>
-
-                <!-- DEV PAGE BUTTON -->
-                <Button @tap='navigateToDev' col='0' row='0' text="DEV" />
+            <GridLayout columns='4*,2*' rows='*' height='50'>
 
                 <!-- TODO INPUT -->
                 <TextField v-model='input' @returnPress='addTodo(input,todos.length)' col='1' row='0' hint="Enter Something" />
@@ -17,7 +14,7 @@
             </GridLayout>
 
             <!-- DISPLAY EVERYTHING -->
-            <GridLayout columns='4*,*' rows='3*,*' height='60' v-for='(item,i) in todos' :key='item'>
+            <GridLayout columns='3*,*' rows='3*,*' height='55' v-for='(item,i) in todos' :key='item'>
 
                 <StackLayout col='0' row='0' rowSpan='2' @tap='toggleDone(i)'>
                     <Label :class="{done: item.isDone}" class="h2" verticalAlignment='center' textWrap='true'>{{item.todo}}</Label>
@@ -50,16 +47,21 @@
 
             addTodo(todo, i) {
 
-                if (!this.input == '') {
-                    this.todos.push({
-                        todo: todo,
-                        isDone: false,
-                        id: i,
-                        dateAdded: date.format(new Date(), 'DD MMM YY'),
-                        timeAdded: date.format(new Date(), 'hh:mm A')
-                    })
+                if (todo == 'devpage') {
+                    this.navigateToDev()
+                } else {
+                    if (!this.input == '') {
+                        this.todos.push({
+                            todo: todo,
+                            isDone: false,
+                            id: i,
+                            dateAdded: date.format(new Date(), 'DD MMM YY'),
+                            timeAdded: date.format(new Date(), 'hh:mm A')
+                        })
+                    }
                 }
                 this.input = ""
+
             },
 
             deleteTodo(i) {
