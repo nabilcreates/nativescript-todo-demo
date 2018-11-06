@@ -5,8 +5,14 @@
         <StackLayout>
             <!-- GRIDLAYOUT FOR INPUT AND BUTTON -->
             <GridLayout columns='*,4*,2*' rows='*' height='50'>
+
+                <!-- DEV PAGE BUTTON -->
                 <Button @tap='navigateToDev' col='0' row='0' text="DEV" />
-                <TextField v-model='input' col='1' row='0' hint="Enter Something" />
+
+                <!-- TODO INPUT -->
+                <TextField v-model='input' @returnPress='addTodo(input,todos.length)' col='1' row='0' hint="Enter Something" />
+
+                <!-- ADD TODO BUTTON -->
                 <Button @tap='addTodo(input,todos.length)' col='2' row='0' text="ADD" />
             </GridLayout>
 
