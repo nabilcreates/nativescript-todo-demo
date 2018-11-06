@@ -47,7 +47,7 @@ $background: #fff;
 $primary: lighten(#000, 13%);
 $secondary: lighten(#000, 46%);
 $disabled: lighten(#000, 62%);
-$accent: $accent-dark;
+$accent: $success-light;
 $error: $error-light;
 
 // SideDrawer
@@ -73,6 +73,6 @@ $btn-color-secondary: darken($btn-color, 10%);
 $btn-color-outline-highlighted: lighten($btn-color, 10%);
 
 //Text colors
-$headings-color: $blue-dark;
+$headings-color: $accent;
 $secondary: $blue-dark;
-$text-color: $blue-dark;
+$text-color: $white;

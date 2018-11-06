@@ -1,8 +1,8 @@
 <template>
     <Page class="page">
-        <ActionBar class="action-bar" title='Todos Demo'></ActionBar>
+        <ActionBar class="action-bar" title='Todos Demo' flat='true'></ActionBar>
 
-        <StackLayout>
+        <StackLayout class="mainpage">
             <!-- GRIDLAYOUT FOR INPUT AND BUTTON -->
             <GridLayout columns='4*,2*' rows='*' height='50'>
 
@@ -14,7 +14,7 @@
             </GridLayout>
 
             <!-- DISPLAY EVERYTHING -->
-            <GridLayout columns='3*,*' rows='3*,*' height='55' v-for='(item,i) in todos' :key='item'>
+            <GridLayout columns='4*,2*' rows='3*,*' height='55' v-for='(item,i) in todos' :key='item'>
 
                 <StackLayout col='0' row='0' rowSpan='2' @tap='toggleDone(i)'>
                     <Label :class="{done: item.isDone}" class="h2" verticalAlignment='center' textWrap='true'>{{item.todo}}</Label>
@@ -110,5 +110,13 @@
     .done {
         text-decoration: line-through;
         color: $disabled;
+    }
+
+    .mainpage{
+        margin: 5;
+    }
+
+    Button{
+        background: $btn-color
     }
 </style>
