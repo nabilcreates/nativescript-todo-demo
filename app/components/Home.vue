@@ -17,12 +17,14 @@
             </GridLayout>
 
             <!-- DISPLAY EVERYTHING -->
-            <GridLayout columns='4*,*,*' rows='3*,*' height='60' v-for='(item,i) in todos' :key='item'>
-                <Label :class="{done: item.isDone}" class="h2" verticalAlignment='center' col='0' row='0' textWrap='true'>{{item.todo}}</Label>
-                <Label :class="{done: item.isDone}" verticalAlignment='center' col='0' row='1' textWrap='true'>{{item.timeAdded}} on {{item.dateAdded}}</Label>
+            <GridLayout columns='4*,*' rows='3*,*' height='60' v-for='(item,i) in todos' :key='item'>
+
+                <StackLayout col='0' row='0' rowSpan='2' @tap='toggleDone(i)'>
+                    <Label :class="{done: item.isDone}" class="h2" verticalAlignment='center' textWrap='true'>{{item.todo}}</Label>
+                    <Label :class="{done: item.isDone}" verticalAlignment='center' textWrap='true'>{{item.timeAdded}} on {{item.dateAdded}}</Label>
+                </StackLayout>
 
                 <Button col='1' row='0' rowSpan='2' @tap='deleteTodo(i)' text='REMOVE' />
-                <Button col='2' row='0' rowSpan='2' @tap='toggleDone(i)' text="DONE" />
             </GridLayout>
 
         </StackLayout>
@@ -31,9 +33,8 @@
 </template>
 
 <script>
-
-import DevInfoVue from './DevInfo.vue';
-let date = require('date-and-time');
+    import DevInfoVue from './DevInfo.vue';
+    let date = require('date-and-time');
 
     export default {
 
@@ -76,8 +77,8 @@ let date = require('date-and-time');
                 }
             },
 
-            navigateToDev(){
-                this.$navigateTo(DevInfoVue , {
+            navigateToDev() {
+                this.$navigateTo(DevInfoVue, {
                     props: {
                         tododata: JSON.stringify(this.todos),
                     }
