@@ -26,9 +26,6 @@
 </template>
 
 <script>
-    import {
-        Page
-    } from "tns-core-modules/ui/page";
 
     export default {
 
