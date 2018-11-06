@@ -1,6 +1,6 @@
 <template>
     <Page class="page">
-        <ActionBar class="action-bar" title='Dev Page'></ActionBar>
+        <ActionBar class="action-bar" title='Dev Page' flat='true'></ActionBar>
 
         <StackLayout>
 
