@@ -4,9 +4,10 @@
 
         <StackLayout>
             <!-- GRIDLAYOUT FOR INPUT AND BUTTON -->
-            <GridLayout columns='4*,*' rows='*' height='40'>
-                <TextField v-model='input' col='0' row='0' hint="Enter Something" />
-                <Button @tap='addTodo(input,todos.length)' col='1' row='0' text="ADD" />
+            <GridLayout columns='*,4*,2*' rows='*' height='50'>
+                <Button @tap='navigateToDev' col='0' row='0' text="DEV" />
+                <TextField v-model='input' col='1' row='0' hint="Enter Something" />
+                <Button @tap='addTodo(input,todos.length)' col='2' row='0' text="ADD" />
             </GridLayout>
 
             <!-- DISPLAY EVERYTHING -->
@@ -25,6 +26,7 @@
 
 <script>
 
+import DevInfoVue from './DevInfo.vue';
 let date = require('date-and-time');
 
     export default {
@@ -66,6 +68,14 @@ let date = require('date-and-time');
                 } else {
                     this.todos[i].isDone = false;
                 }
+            },
+
+            navigateToDev(){
+                this.$navigateTo(DevInfoVue , {
+                    props: {
+                        tododata: JSON.stringify(this.todos),
+                    }
+                })
             }
 
         },
