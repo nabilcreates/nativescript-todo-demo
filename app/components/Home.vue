@@ -10,10 +10,12 @@
             </GridLayout>
 
             <!-- DISPLAY EVERYTHING -->
-            <GridLayout columns='4*,*,*' rows='*' height='40' v-for='(item,i) in todos' :key='item'>
-                <Label :class="{done: item.isDone}" verticalAlignment='center' col='0' row='0' textWrap='true'>{{item.todo}}</Label>
-                <Button col='1' row='0' @tap='deleteTodo(i)' text="R" />
-                <Button col='2' row='0' @tap='toggleDone(i)' text="D" />
+            <GridLayout columns='4*,*,*' rows='3*,*' height='60' v-for='(item,i) in todos' :key='item'>
+                <Label :class="{done: item.isDone}" class="h2" verticalAlignment='center' col='0' row='0' textWrap='true'>{{item.todo}}</Label>
+                <Label :class="{done: item.isDone}" verticalAlignment='center' col='0' row='1' textWrap='true'>{{item.dateAdded}}</Label>
+
+                <Button col='1' row='0' rowSpan='2' @tap='deleteTodo(i)' text='REMOVE' />
+                <Button col='2' row='0' rowSpan='2' @tap='toggleDone(i)' text="DONE" />
             </GridLayout>
 
         </StackLayout>
@@ -22,6 +24,8 @@
 </template>
 
 <script>
+
+let date = require('date-and-time');
 
     export default {
 
@@ -41,7 +45,8 @@
                     this.todos.push({
                         todo: todo,
                         isDone: false,
-                        id: i
+                        id: i,
+                        dateAdded: date.format(new Date(), 'DD MMM YY HH:mm:ss')
                     })
                 }
                 this.input = ""
