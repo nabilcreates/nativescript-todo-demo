@@ -7,7 +7,7 @@
             <GridLayout columns='4*,2*' rows='*' height='50'>
 
                 <!-- TODO INPUT -->
-                <TextField v-model='input' @returnPress='addTodo(input,todos.length)' col='0' row='0' hint="Enter Something" />
+                <TextField v-model='input' @returnPress='addTodo(input,todos.length)' col='0' row='0' hint="Enter" />
 
                 <!-- ADD TODO BUTTON -->
                 <Button @tap='addTodo(input,todos.length)' col='1' row='0' text="ADD" />
@@ -109,5 +109,6 @@
 
     .done {
         text-decoration: line-through;
+        color: $disabled;
     }
 </style>
