@@ -1,8 +1,6 @@
 <template>
     <Page class="page">
-        <ActionBar class="action-bar">
-            <Label class="action-bar-title" text="Todos Demo"></Label>
-        </ActionBar>
+        <ActionBar class="action-bar" title='Todos Demo'></ActionBar>
 
         <StackLayout>
 
@@ -45,13 +43,14 @@
         methods: {
 
             addTodo(todo, i) {
-                this.todos.push({
-                    todo: todo,
-                    isDone: false,
-                    id: i
-                })
 
-                console.log(this.todos)
+                if (!this.input == '') {
+                    this.todos.push({
+                        todo: todo,
+                        isDone: false,
+                        id: i
+                    })
+                }
                 this.input = ""
             },
 
@@ -59,16 +58,16 @@
                 this.todos.splice(i, 1)
             },
 
-            toggleDone(i){
+            toggleDone(i) {
                 this.click++
 
-                if(this.click % 2 == 0){
+                if (this.click % 2 == 0) {
                     this.todos[i].isDone = true;
-                }else{
+                } else {
                     this.todos[i].isDone = false;
                 }
             }
-            
+
         },
 
     };
