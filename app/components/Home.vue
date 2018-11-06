@@ -5,20 +5,22 @@
         </ActionBar>
 
         <StackLayout>
-            <Label textWrap='true' col='0' row='1'> {{todos}} </Label>
+
+            <Label textWrap='true'>{{todos}}</Label>
+
 
             <!-- GRIDLAYOUT FOR INPUT AND BUTTON -->
-            <GridLayout columns='*,*,*,*,*,*' rows='*' height='40'>
+            <GridLayout columns='4*,*' rows='*' height='40'>
                 <TextField v-model='input' col='0' row='0' hint="Enter Something" />
-                <Button @tap='addTodo(input)' col='1' row='0' text="ADD" />
-
-                <Button @tap='i--' col='2' row='0' text="-" />
-                <TextField v-model='i' col='3' row='0' hint="Enter Index" />
-                <Button @tap='i++' col='4' row='0' text="+" />
-                <Button @tap='deleteTodo(i)' col='5' row='0' text="DELETE" />
+                <Button @tap='addTodo(input,todos.length)' col='1' row='0' text="ADD" />
             </GridLayout>
 
-            <Label textWrap='true'>You are deleting: {{todos[i]}} </Label>
+            <!-- DISPLAY EVERYTHING -->
+            <GridLayout columns='4*,*,*' rows='*' height='40' v-for='(item,i) in todos' :key='item'>
+                <Label :class="{done: item.isDone}" verticalAlignment='center' col='0' row='0' textWrap='true'>{{item.todo}}</Label>
+                <Button col='1' row='0' @tap='deleteTodo(i)' text="R" />
+                <Button col='2' row='0' @tap='toggleDone(i)' text="D" />
+            </GridLayout>
 
         </StackLayout>
 
@@ -26,34 +28,49 @@
 </template>
 
 <script>
+    import {
+        Page
+    } from "tns-core-modules/ui/page";
+
     export default {
 
         data() {
             return {
                 todos: [],
                 input: "",
-                i: 0,
+                click: 0,
             }
         },
 
         methods: {
 
-            addTodo(todo) {
-                this.todos.push(todo)
+            addTodo(todo, i) {
+                this.todos.push({
+                    todo: todo,
+                    isDone: false,
+                    id: i
+                })
+
+                console.log(this.todos)
                 this.input = ""
             },
 
             deleteTodo(i) {
                 this.todos.splice(i, 1)
-            }
+            },
 
+            toggleDone(i){
+                this.click++
+
+                if(this.click % 2 == 0){
+                    this.todos[i].isDone = true;
+                }else{
+                    this.todos[i].isDone = false;
+                }
+            }
+            
         },
 
-        computed: {
-            message() {
-                return "Blank {N}-Vue app";
-            }
-        }
     };
 </script>
 
@@ -69,5 +86,9 @@
 
     .info {
         font-size: 20;
+    }
+
+    .done {
+        text-decoration: line-through;
     }
 </style>
