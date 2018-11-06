@@ -47,6 +47,7 @@
 
             addTodo(todo, i) {
 
+                // CHECK FOR INPUT (DEVPAGE) TO NAVIGATE TO DEVPAGE, IF ITS NOT DEVPAGE, PUSH IT TO THE TODOS ARRAY AND DO THE NORMAL STUFF
                 if (todo == 'devpage') {
                     this.navigateToDev()
                 } else {
