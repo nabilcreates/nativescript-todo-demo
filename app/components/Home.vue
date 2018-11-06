@@ -3,10 +3,6 @@
         <ActionBar class="action-bar" title='Todos Demo'></ActionBar>
 
         <StackLayout>
-
-            <Label textWrap='true'>{{todos}}</Label>
-
-
             <!-- GRIDLAYOUT FOR INPUT AND BUTTON -->
             <GridLayout columns='4*,*' rows='*' height='40'>
                 <TextField v-model='input' col='0' row='0' hint="Enter Something" />
