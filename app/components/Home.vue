@@ -58,7 +58,8 @@
             toggleDone(i) {
                 this.click++
 
-                if (this.click % 2 == 0) {
+                // FIRST CLICK
+                if (this.click % 2 == 1) {
                     this.todos[i].isDone = true;
                 } else {
                     this.todos[i].isDone = false;
